@@ -32,7 +32,7 @@ project "stb-image"
 
   defines {
     "STB_IMAGE_IMPLEMENTATION",
-    "STB_IMAGE_STATIC"
+    --"STB_IMAGE_STATIC"
   }
 
   files {
