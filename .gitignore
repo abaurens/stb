@@ -5,6 +5,7 @@ build/
 *.dll
 *.lai
 *.lib
+*.log
 *.dylib
 *.sln
 *.vcxproj

@@ -1,20 +1,21 @@
 -- stb
 
+require("premake", ">=5.0.0-beta6")
+
 project "stb"
   kind "None"
   language "C"
   cdialect "C11"
   systemversion "latest"
 
-  IncludeDir["stb"] = "%{wks.location}/libs/stb"
-
-  includedirs {}
-
   files {
     "premake5.lua",
-    "**.h",
-    "**.c",
+    "stb/**.h",
+    "stb/**.c",
   }
+
+  usage "PUBLIC"
+    includedirs { "./stb" }
 
 project "stb-image"
   kind "StaticLib"
@@ -26,10 +27,8 @@ project "stb-image"
   targetdir ("%{wks.location}/bin/" .. outputdir .. "/%{prj.name}")
   objdir ("%{wks.location}/build/" .. outputdir .. "%{prj.name}")
 
-  includedirs {
-    "%{IncludeDir.stb}/stb"
-  }
-
+  --uses { "stb" }
+  
   defines {
     "STB_IMAGE_IMPLEMENTATION",
     --"STB_IMAGE_STATIC"
@@ -41,3 +40,9 @@ project "stb-image"
     "stb/stb_image.h",
     "src/stb_image.c",
   }
+
+  usage "PUBLIC"
+    uses { "stb" }
+
+  usage "INTERFACE"
+    links { "stb-image" }
